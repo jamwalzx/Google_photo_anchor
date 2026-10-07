@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Anchor & Drift — Google Photos MVP</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="top">
+            <div class="brand"><span class="logo"></span>Photos</div>
+            <div class="search">⌕ &nbsp; Search your photos</div>
+            <div class="ava"></div>
+        </div>
+
+        <section id="s1" class="panel screen active">
+            <div class="pad">
+                <div class="eyebrow">Anchor &amp; Drift</div>
+                <h1>Start from a photo you already know.</h1>
+                <div class="sub">When you remember the memory but not the search words, pick a photo from the same trip,
+                    day or place and drift outward to nearby memories.</div>
+            </div>
+            <div class="label">Pick an easy-to-find anchor</div>
+            <div class="note">Synthetic demo library · choose any familiar photo below</div>
+            <div id="anchors" class="grid"></div>
+        </section>
+
+        <section id="s2" class="panel screen">
+            <div class="toolbar"><button class="back" onclick="show('s1')">‹</button>
+                <div><b>Choose how far to drift</b>
+                    <div class="note" style="padding:0;margin-top:2px">Search outward from the anchor instead of
+                        describing the missing photo.</div>
+                </div>
+            </div>
+            <div class="anchor">
+                <div class="aInfo"><img id="aimg">
+                    <div>
+                        <div class="tag">ANCHOR SELECTED</div>
+                        <h2 id="atitle"></h2>
+                        <div id="ameta" class="note" style="padding:0"></div>
+                    </div>
+                </div><button class="secondary" onclick="show('s1')">Change</button>
+            </div>
+            <div class="label">Drift outward by relationship</div>
+            <div class="options">
+                <div class="opt sel" data-mode="day"> <b>Same day</b><small>Photos from the same day</small></div>
+                <div class="opt" data-mode="trip"><b>Same trip</b><small>Nearby days in this trip</small></div>
+                <div class="opt" data-mode="place"><b>Nearby place</b><small>Same geo-cluster</small></div>
+            </div>
+            <div class="banner">
+                <div><b>Recognition beats recall.</b><br><span style="color:#5f6368">Find one thing you know, then drift
+                        outward.</span></div><button id="drift" class="primary">Drift to nearby memories</button>
+            </div>
+        </section>
+
+        <section id="s3" class="panel screen">
+            <div class="toolbar"><button class="back" onclick="show('s2')">‹</button>
+                <div><b>Anchor &amp; Drift results</b>
+                    <div class="note" style="padding:0;margin-top:2px">Candidates ranked by time, place and trip
+                        proximity.</div>
+                </div>
+            </div>
+            <div class="resultHead">
+                <div>
+                    <div class="eyebrow">Drifting from your anchor</div>
+                    <h1 id="rtitle">Nearby memories</h1>
+                    <div id="rsub" class="note" style="padding:0"></div>
+                </div>
+                <div class="reason">Matched by <b id="reason">same-day proximity</b>.</div>
+            </div>
+            <div id="results" class="grid"></div>
+            <div class="banner">
+                <div><b>Still not finding it?</b><br><span style="color:#5f6368">Move farther from the anchor or change
+                        the relationship.</span></div>
+                <div><button class="secondary" onclick="drift('trip')">Same trip</button> <button class="secondary"
+                        onclick="drift('place')">Nearby place</button> <button class="primary"
+                        onclick="toast('✓ Retrieval successful — user confirmed the target photo.')">I found it</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>
